@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29424.173
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JianShen.Swarm.Web", "JianShen.Swarm.Web\JianShen.Swarm.Web.csproj", "{A8CC6920-419E-4C73-B47C-7E634EAC1910}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JianShen.Swarm.XUnit", "JianShen.Swarm.XUnit\JianShen.Swarm.XUnit.csproj", "{BE74A95B-9E75-49BF-9CCA-E719CA224A65}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "JianShen.Swram.Study", "JianShen.Swram.Study", "{CA9BC08D-70EE-4DA3-8823-F49BF7EF1978}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "权限管理", "权限管理", "{58521017-B140-4200-ADD1-E1E1A2561B50}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrivilegeManagement", "PrivilegeManagement\PrivilegeManagement.csproj", "{0414E414-FE2C-4381-87CF-F67FED8A0E25}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A8CC6920-419E-4C73-B47C-7E634EAC1910}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8CC6920-419E-4C73-B47C-7E634EAC1910}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8CC6920-419E-4C73-B47C-7E634EAC1910}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8CC6920-419E-4C73-B47C-7E634EAC1910}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE74A95B-9E75-49BF-9CCA-E719CA224A65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE74A95B-9E75-49BF-9CCA-E719CA224A65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE74A95B-9E75-49BF-9CCA-E719CA224A65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE74A95B-9E75-49BF-9CCA-E719CA224A65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0414E414-FE2C-4381-87CF-F67FED8A0E25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0414E414-FE2C-4381-87CF-F67FED8A0E25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0414E414-FE2C-4381-87CF-F67FED8A0E25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0414E414-FE2C-4381-87CF-F67FED8A0E25}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{58521017-B140-4200-ADD1-E1E1A2561B50} = {CA9BC08D-70EE-4DA3-8823-F49BF7EF1978}
+		{0414E414-FE2C-4381-87CF-F67FED8A0E25} = {58521017-B140-4200-ADD1-E1E1A2561B50}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {98B61122-0C97-410F-A272-152318E15876}
+	EndGlobalSection
+EndGlobal
