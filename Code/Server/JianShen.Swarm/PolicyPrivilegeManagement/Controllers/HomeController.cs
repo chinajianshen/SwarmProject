@@ -8,35 +8,42 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using PrivilegeManagement.Models;
+using PolicyPrivilegeManagement.Models;
 
-namespace PrivilegeManagement.Controllers
+namespace PolicyPrivilegeManagement.Controllers
 {
-    //固定角色，在授权时带上角色，这种一般不常用，常用的是自定义角色，用户可访问配置到数据库
-    //[Authorize(Roles = "admin,system")]  
-    public class HomeController : BaseController //继承基础Controller,权限验证[Authorize]放在基础控制器控制，需要权限的页面继承就行了
-    {       
+    [Authorize(Policy = "RequireClaim")]
+    public class HomeController : Controller
+    {
         public IActionResult Index()
         {
             return View();
         }
 
-        //[Authorize(Roles ="system")]
+        [Authorize(Roles = "admin")]
+        public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        [Authorize(Roles = "system")]
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
             return View();
         }
 
+        [Authorize(Roles = "system")]
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";
             return View();
-        }
-
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
         [AllowAnonymous]
@@ -49,12 +56,12 @@ namespace PrivilegeManagement.Controllers
 
         [AllowAnonymous]
         [HttpPost("login")]
-        public async Task<IActionResult> Login(string userName,string password,string returnUrl = null)
+        public async Task<IActionResult> Login(string userName, string password, string returnUrl = null)
         {
             var list = new List<dynamic> {
-                new { UserName = "zh", Password = "111", Role = "admin",Name="桂素伟" },
-                new { UserName = "zh2", Password = "111", Role = "system",Name="测试A" }
-            };
+               new { UserName = "zh", Password = "111", Role = "admin",Name="张三",Country="中国",Date="2017-09-02",BirthDay="1979-06-22"},
+               new { UserName = "zh2", Password = "111", Role = "system",Name="测试A" ,Country="美国",Date="2017-09-03",BirthDay="1999-06-22"}
+           };
 
             var user = list.SingleOrDefault(s => s.UserName == userName && s.Password == password);
             if (user != null)
@@ -63,16 +70,15 @@ namespace PrivilegeManagement.Controllers
                 var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme);
                 identity.AddClaim(new Claim(ClaimTypes.Sid, userName));
                 identity.AddClaim(new Claim(ClaimTypes.Name, user.Name));
-                identity.AddClaim(new Claim(ClaimTypes.Role, user.Role));              
-
+                identity.AddClaim(new Claim(ClaimTypes.Role, user.Role));
+                identity.AddClaim(new Claim(ClaimTypes.Country, user.Country));
+                identity.AddClaim(new Claim("date", user.Date));
 
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));
-
                 if (returnUrl == null)
                 {
                     returnUrl = TempData["returnUrl"]?.ToString();
                 }
-
                 if (returnUrl != null)
                 {
                     return Redirect(returnUrl);
@@ -81,26 +87,37 @@ namespace PrivilegeManagement.Controllers
                 {
                     return RedirectToAction(nameof(HomeController.Index), "Home");
                 }
-
             }
             else
             {
-                const string message = "用户名或密码错误!";
+                const string message = "用户名或密码错误！";
                 return BadRequest(message);
             }
         }
 
-        public async Task<IActionResult> Logout()
-        {
-            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction("Index", "Home");
-        }
-
         [AllowAnonymous]
-        [HttpGet("denied")]
+        [HttpGet("Denied")]
         public IActionResult Denied()
         {
             return View();
+        }
+
+        
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("index", "Home");
+        }
+
+
+        public IActionResult T1()
+        {
+            return Content("1111");
+        }
+
+        public IActionResult T2()
+        {
+            return Content("2222");
         }
     }
 }

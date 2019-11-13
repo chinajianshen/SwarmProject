@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace PrivilegeManagement
+namespace PolicyPrivilegeManagement
 {
     public class Program
     {
@@ -19,10 +19,6 @@ namespace PrivilegeManagement
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-            .ConfigureAppConfiguration((host, config) =>
-            {
-               //config.AddJsonFile("", false, true);
-            })
-           .UseStartup<Startup>();
+                .UseStartup<Startup>();
     }
 }
