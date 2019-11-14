@@ -13,7 +13,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "权限管理", "权限管�
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrivilegeManagement", "PrivilegeManagement\PrivilegeManagement.csproj", "{0414E414-FE2C-4381-87CF-F67FED8A0E25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolicyPrivilegeManagement", "PolicyPrivilegeManagement\PolicyPrivilegeManagement.csproj", "{24EFE6D6-5DE6-46D5-83C5-D7698BF4E9D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PolicyPrivilegeManagement", "PolicyPrivilegeManagement\PolicyPrivilegeManagement.csproj", "{24EFE6D6-5DE6-46D5-83C5-D7698BF4E9D2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ActionResult", "ActionResult", "{58FAA7DB-2800-4BC4-91F6-535EF820088D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActionResultStudy", "ActionResultStudy\ActionResultStudy.csproj", "{A2C236B2-793A-47C1-920E-F68BDDD68DF6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +41,10 @@ Global
 		{24EFE6D6-5DE6-46D5-83C5-D7698BF4E9D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24EFE6D6-5DE6-46D5-83C5-D7698BF4E9D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24EFE6D6-5DE6-46D5-83C5-D7698BF4E9D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2C236B2-793A-47C1-920E-F68BDDD68DF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2C236B2-793A-47C1-920E-F68BDDD68DF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2C236B2-793A-47C1-920E-F68BDDD68DF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2C236B2-793A-47C1-920E-F68BDDD68DF6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -45,6 +53,8 @@ Global
 		{58521017-B140-4200-ADD1-E1E1A2561B50} = {CA9BC08D-70EE-4DA3-8823-F49BF7EF1978}
 		{0414E414-FE2C-4381-87CF-F67FED8A0E25} = {58521017-B140-4200-ADD1-E1E1A2561B50}
 		{24EFE6D6-5DE6-46D5-83C5-D7698BF4E9D2} = {58521017-B140-4200-ADD1-E1E1A2561B50}
+		{58FAA7DB-2800-4BC4-91F6-535EF820088D} = {CA9BC08D-70EE-4DA3-8823-F49BF7EF1978}
+		{A2C236B2-793A-47C1-920E-F68BDDD68DF6} = {58FAA7DB-2800-4BC4-91F6-535EF820088D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {98B61122-0C97-410F-A272-152318E15876}
