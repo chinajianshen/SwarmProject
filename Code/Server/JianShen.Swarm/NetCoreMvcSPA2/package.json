@@ -1,0 +1,21 @@
+{
+  "name": "my-netcoremvcdemo",
+  "version": "1.0.0",
+  "description": "this is a project file",
+  "main": "./ClientApp/main.js",
+  "author": "zh",
+  "license": "ISC",
+  "private": true,
+  "devDependencies": {
+    "vue": "^2.6.10",
+    "vue-loader": "^15.7.2",
+    "vue-template-compiler": "^2.6.10",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0"
+  },
+  "dependencies": {},
+  "scripts": {
+    "dev": "webpack  --mode development"
+  }
+}

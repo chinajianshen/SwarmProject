@@ -1,0 +1,22 @@
+﻿引用地址：https://www.cnblogs.com/citycomputing/p/9850029.html
+
+步骤：
+1在VS2017中建立一个新的 MVC 项目
+2用 npm 添加 vue 支持包
+在MVC项目目录下执行：
+npm init -y //-y用默认选项
+
+npm i --save-dev webpack     //等价于  npm i -D webpack
+npm i --save-dev webpack-cli
+
+npm i --save-dev vue 
+npm i --save-dev vue
+npm i --save-dev vue-template-compiler
+
+
+4、手动编译 vue 文件
+每次修改或新加vue组件，需要手动编译 vue 项目，可在项目目录下执行：   
+
+ npx webpack  --mode development
+
+ 5、VS运行项目
