@@ -1,0 +1,72 @@
+﻿@using System.Linq
+@using NetCoreMvcVueElementUI.Service
+@inject MenuService MenuService
+
+@{ 
+    List<Menu> menuList = MenuService.GetLetfMenus();
+}
+
+<el-aside width="230px">
+    <el-menu default-active="2"
+             class="el-menu-vertical-demo"
+             @@open="handleOpen"
+             @@close="handleClose"
+             background-color="#222d32"
+             text-color="#fff"
+             active-text-color="#ffd04b"
+             style="height:100%;"
+             :collapse="isCollapse">
+        @foreach (var item in menuList)
+        {
+            @if (item.path.Contains("/") && item.parentId == "0")
+            {
+                <el-menu-item index="@item.name">
+                    <i class="@item.icon"></i>
+                    <span slot="title">@item.title</span>
+                </el-menu-item>
+            }
+            else if (item.parentId == "0")
+            {
+                <el-submenu index="@item.name">
+                    <template slot="title">
+                        <i class="@item.icon"></i>
+                        <span slot="title">@item.title</span>
+                    </template>
+                    @{
+                        var childMenu = menuList.Where<Menu>(m => m.parentId == item.id);
+                    }
+                    @foreach (var item2 in childMenu)
+                    {
+                        if (item2.path.Contains("/"))
+                        {
+                            <el-menu-item index="@item2.name">
+                                <i class="@item2.icon"></i>
+                                <span slot="title">@item2.title</span>
+                            </el-menu-item>
+                        }
+                        else
+                        {
+                            <el-submenu index="@item2.name">
+                                <template slot="title">
+                                    <i class="@item2.icon"></i>
+                                    <span slot="title">@item2.title</span>
+                                </template>
+                                @{
+                                    var childMenu2 = menuList.Where<Menu>(m => m.parentId == item2.id);
+                                }
+                                @foreach (var item3 in childMenu2)
+                                {
+                                    <el-menu-item index="@item3.name">
+                                        <i class="@item3.icon"></i>
+                                        <span slot="title">@item3.title</span>
+                                    </el-menu-item>
+                                }
+                            </el-submenu>
+                        }
+                    }
+                </el-submenu>
+            }
+        }
+    </el-menu>
+</el-aside>
+

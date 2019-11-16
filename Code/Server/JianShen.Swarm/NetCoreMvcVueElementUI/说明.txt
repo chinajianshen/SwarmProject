@@ -1,0 +1,5 @@
+﻿引用地址： https://blog.csdn.net/awei0130/article/details/90269898
+
+传统WEB开发模式 非单页应用 生个页面都需要一个new Vue()
+
+ElementUI Menu组件还是得好好学学

@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - NetCoreMvcVueElementUI</title>
+    <link rel="stylesheet" href="~/css/main.css" />
+    <link rel="stylesheet" href="~/lib/element-ui/theme-chalk/index.css" />
+    <script type="text/javascript" src="~/lib/vue/vue.js"></script>
+    <script type="text/javascript" src="~/lib/element-ui/index.js"></script>
+
+    @RenderSection("styles",required:false)
+</head>
+<body>
+    <div id="app">
+        <el-container>
+            <el-header>
+                <div style=" width: 230px; height: 50px; text-align: center;
+                                    line-height: 60px; color: #fff; font-size: 20px;">
+                    <span class="big">@ViewData["system_name"]</span>
+                </div>
+                <div style="margin-top: -31px;  margin-left: 250px; width:100px; text-align:left;">
+                    <span @@click="menuToggle">
+                        <i class="el-icon-menu"></i>
+                    </span>
+                </div>
+                <div style="margin-top: -24px;  margin-left: 330px; text-align:right;">
+                    当前用户：{{username}}
+                </div>
+            </el-header>
+            <el-container>
+                 @Html.Partial("LeftMenu")
+                <el-main v-bind:class="{main_toggle:isCollapse}">
+                    @RenderBody()
+                </el-main>
+            </el-container>
+        </el-container>
+    </div>
+    <script>
+         var app = new Vue({
+        el: "#app",
+        data: {
+            isCollapse:false,
+            username:'@Html.Raw(ViewData["username"]?.ToString())'
+        },
+        methods: {
+            handleOpen(key, keyPath) {
+                console.log(key, keyPath);
+            },
+            handleClose(key, keyPath) {
+                console.log(key, keyPath);
+            },
+            menuToggle() {
+                if (this.isCollapse) {
+
+                    this.isCollapse = false;
+                } else {
+
+                    this.isCollapse = true;
+                }
+            }
+        }
+    });
+    </script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>
