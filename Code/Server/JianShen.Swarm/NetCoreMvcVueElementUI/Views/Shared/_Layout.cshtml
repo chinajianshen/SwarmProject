@@ -29,7 +29,7 @@
                 </div>
             </el-header>
             <el-container>
-                 @Html.Partial("LeftMenu")
+                 @await Html.PartialAsync("LeftMenu")
                 <el-main v-bind:class="{main_toggle:isCollapse}">
                     @RenderBody()
                 </el-main>

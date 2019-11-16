@@ -27,7 +27,25 @@ Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "VueSPA", "VueSPA\VueSPA.njs
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreMvcSPA2", "NetCoreMvcSPA2\NetCoreMvcSPA2.csproj", "{9AA46E40-76BA-45F5-87D4-7EA02D56AE2C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreMvcVueElementUI", "NetCoreMvcVueElementUI\NetCoreMvcVueElementUI.csproj", "{849775EB-B95A-4761-848B-EA6C449E1C88}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreMvcVueElementUI", "NetCoreMvcVueElementUI\NetCoreMvcVueElementUI.csproj", "{849775EB-B95A-4761-848B-EA6C449E1C88}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JianShen.Swarm.Common", "JianShen.Swarm.Common\JianShen.Swarm.Common.csproj", "{61846D63-DA2F-4D33-BAB1-7526E3AD750B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JianShen.Swarm.DTO", "JianShen.Swarm.DTO\JianShen.Swarm.DTO.csproj", "{6201583B-A9E2-4E96-B4D2-D95314C91E67}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JianShen.Swarm.IRepository", "JianShen.Swarm.IRepository\JianShen.Swarm.IRepository.csproj", "{BAB3EA59-3184-43E2-BC23-E7BA9CE37ECC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JianShen.Swarm.Repository", "JianShen.Swarm.Repository\JianShen.Swarm.Repository.csproj", "{3027B106-0FAC-4C2A-9DB6-E252E15ADC9F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JianShen.Swarm.IService", "JianShen.Swarm.IService\JianShen.Swarm.IService.csproj", "{EF1743A3-2A56-4901-9D77-BF984DE3ACB4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JianShen.Swarm.Service", "JianShen.Swarm.Service\JianShen.Swarm.Service.csproj", "{2D365B39-E038-4E69-A571-40F9E1809AB7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JianShen.Swarm.Model", "JianShen.Swarm.Model\JianShen.Swarm.Model.csproj", "{27218ED3-874F-4BC1-9ABB-E0DF0B18C9AC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JianShen.Swarm.WebApi", "JianShen.Swarm.WebApi\JianShen.Swarm.WebApi.csproj", "{B040CD32-CC7D-4665-8BCB-916C82B6B031}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JianShen.Swarm.Utility", "JianShen.Swarm.Utility\JianShen.Swarm.Utility.csproj", "{B8321916-6AE4-4D99-A55D-66DEEDFAA41A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,6 +89,42 @@ Global
 		{849775EB-B95A-4761-848B-EA6C449E1C88}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{849775EB-B95A-4761-848B-EA6C449E1C88}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{849775EB-B95A-4761-848B-EA6C449E1C88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61846D63-DA2F-4D33-BAB1-7526E3AD750B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61846D63-DA2F-4D33-BAB1-7526E3AD750B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61846D63-DA2F-4D33-BAB1-7526E3AD750B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61846D63-DA2F-4D33-BAB1-7526E3AD750B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6201583B-A9E2-4E96-B4D2-D95314C91E67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6201583B-A9E2-4E96-B4D2-D95314C91E67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6201583B-A9E2-4E96-B4D2-D95314C91E67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6201583B-A9E2-4E96-B4D2-D95314C91E67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAB3EA59-3184-43E2-BC23-E7BA9CE37ECC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAB3EA59-3184-43E2-BC23-E7BA9CE37ECC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAB3EA59-3184-43E2-BC23-E7BA9CE37ECC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAB3EA59-3184-43E2-BC23-E7BA9CE37ECC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3027B106-0FAC-4C2A-9DB6-E252E15ADC9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3027B106-0FAC-4C2A-9DB6-E252E15ADC9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3027B106-0FAC-4C2A-9DB6-E252E15ADC9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3027B106-0FAC-4C2A-9DB6-E252E15ADC9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF1743A3-2A56-4901-9D77-BF984DE3ACB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF1743A3-2A56-4901-9D77-BF984DE3ACB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF1743A3-2A56-4901-9D77-BF984DE3ACB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF1743A3-2A56-4901-9D77-BF984DE3ACB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D365B39-E038-4E69-A571-40F9E1809AB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D365B39-E038-4E69-A571-40F9E1809AB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D365B39-E038-4E69-A571-40F9E1809AB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D365B39-E038-4E69-A571-40F9E1809AB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27218ED3-874F-4BC1-9ABB-E0DF0B18C9AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27218ED3-874F-4BC1-9ABB-E0DF0B18C9AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27218ED3-874F-4BC1-9ABB-E0DF0B18C9AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27218ED3-874F-4BC1-9ABB-E0DF0B18C9AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B040CD32-CC7D-4665-8BCB-916C82B6B031}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B040CD32-CC7D-4665-8BCB-916C82B6B031}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B040CD32-CC7D-4665-8BCB-916C82B6B031}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B040CD32-CC7D-4665-8BCB-916C82B6B031}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8321916-6AE4-4D99-A55D-66DEEDFAA41A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8321916-6AE4-4D99-A55D-66DEEDFAA41A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8321916-6AE4-4D99-A55D-66DEEDFAA41A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8321916-6AE4-4D99-A55D-66DEEDFAA41A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

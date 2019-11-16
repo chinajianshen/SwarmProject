@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\JianShen.Swarm.DTO\JianShen.Swarm.DTO.csproj" />
+    <ProjectReference Include="..\JianShen.Swarm.IRepository\JianShen.Swarm.IRepository.csproj" />
+    <ProjectReference Include="..\JianShen.Swarm.IService\JianShen.Swarm.IService.csproj" />
+    <ProjectReference Include="..\JianShen.Swarm.Model\JianShen.Swarm.Model.csproj" />
+    <ProjectReference Include="..\JianShen.Swarm.Utility\JianShen.Swarm.Utility.csproj" />
+  </ItemGroup>
+
+</Project>
