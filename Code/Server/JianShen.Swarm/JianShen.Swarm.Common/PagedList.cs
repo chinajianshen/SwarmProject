@@ -14,4 +14,12 @@ namespace JianShen.Swarm.Common
 
         public int TotalCount { get; set; }
     }
+
+    public class PagedList
+    {
+        public int TotalCount { get; set; }
+
+        public dynamic Items { get; set; }
+    }
+
 }

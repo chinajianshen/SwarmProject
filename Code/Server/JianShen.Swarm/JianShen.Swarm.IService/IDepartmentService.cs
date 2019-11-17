@@ -5,15 +5,22 @@ using JianShen.Swarm.Model.BaseModel;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace JianShen.Swarm.IService
 {
-    public interface IDepartmentService
+    public interface IDepartmentService: IService<DepartmentModel>
     {
-        ReponseMessage<List<DepartmentEntity>> GetList();
+        List<DepartmentEntity> GetListDto();
 
-        ReponseMessage<DepartmentEntity> GetByID(int id);
+        Task<List<DepartmentEntity>> GetListDtoAsync();
 
-        ReponseMessage<PagedList<DepartmentEntity>> GetPagedList(int pageNumber, int rowsPerPage);
+        DepartmentEntity GetByIDDto(int id);
+
+        Task<DepartmentEntity> GetByIDDtoAsync(int id);
+
+        PagedList<DepartmentEntity> GetPagedListDto(BaseQueryEntity queryEntity);
+
+        Task<PagedList<DepartmentEntity>> GetPagedListDtoAsync(BaseQueryEntity queryEntity);
     }
 }

@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Dapper
 {
@@ -24,6 +25,7 @@ namespace Dapper
         private static string _encapsulation;
         private static string _getIdentitySql;
         private static string _getPagedListSql;
+        private static string _getTotalCntSql;
 
         private static readonly IDictionary<Type, string> TableNames = new Dictionary<Type, string>();
         private static readonly IDictionary<string, string> ColumnNames = new Dictionary<string, string>();
@@ -71,6 +73,7 @@ namespace Dapper
                     _encapsulation = "[{0}]";
                     _getIdentitySql = string.Format("SELECT CAST(SCOPE_IDENTITY()  AS BIGINT) AS [id]");
                     _getPagedListSql = "SELECT * FROM (SELECT ROW_NUMBER() OVER(ORDER BY {OrderBy}) AS PagedNumber, {SelectColumns} FROM {TableName} {WhereClause}) AS u WHERE PagedNUMBER BETWEEN (({PageNumber}-1) * {RowsPerPage} + 1) AND ({PageNumber} * {RowsPerPage})";
+                    _getTotalCntSql = "SELECT COUNT(1) AS TotalCnt FROM {TableName} {WhereClause}";
                     break;
             }
         }
@@ -147,6 +150,59 @@ namespace Dapper
         /// <summary>
         /// <para>By default queries the table matching the class name</para>
         /// <para>-Table name can be overridden by adding an attribute on your class [Table("YourTableName")]</para>
+        /// <para>By default filters on the Id column</para>
+        /// <para>-Id column name can be overridden by adding an attribute on your primary key property [Key]</para>
+        /// <para>Supports transaction and command timeout</para>
+        /// <para>Returns a single entity by a single id from table T</para>
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="connection"></param>
+        /// <param name="id"></param>
+        /// <param name="transaction"></param>
+        /// <param name="commandTimeout"></param>
+        /// <returns>Returns a single entity by a single id from table T.</returns>
+        public static async Task<T> GetAsync<T>(this IDbConnection connection, object id, IDbTransaction transaction = null, int? commandTimeout = null)
+        {
+            var currenttype = typeof(T);
+            var idProps = GetIdProperties(currenttype).ToList();
+
+            if (!idProps.Any())
+                throw new ArgumentException("Get<T> only supports an entity with a [Key] or Id property");
+
+            var name = GetTableName(currenttype);
+            var sb = new StringBuilder();
+            sb.Append("Select ");
+            //create a new empty instance of the type to get the base properties
+            BuildSelect(sb, GetScaffoldableProperties<T>().ToArray());
+            sb.AppendFormat(" from {0} where ", name);
+
+            for (var i = 0; i < idProps.Count; i++)
+            {
+                if (i > 0)
+                    sb.Append(" and ");
+                sb.AppendFormat("{0} = @{1}", GetColumnName(idProps[i]), idProps[i].Name);
+            }
+
+            var dynParms = new DynamicParameters();
+            if (idProps.Count == 1)
+                dynParms.Add("@" + idProps.First().Name, id);
+            else
+            {
+                foreach (var prop in idProps)
+                    dynParms.Add("@" + prop.Name, id.GetType().GetProperty(prop.Name).GetValue(id, null));
+            }
+
+            if (Debugger.IsAttached)
+                Trace.WriteLine(String.Format("Get<{0}>: {1} with Id: {2}", currenttype, sb, id));
+
+            var result = (await connection.QueryAsync<T>(sb.ToString(), dynParms, transaction, commandTimeout)).FirstOrDefault();
+
+            return result;
+        }
+
+        /// <summary>
+        /// <para>By default queries the table matching the class name</para>
+        /// <para>-Table name can be overridden by adding an attribute on your class [Table("YourTableName")]</para>
         /// <para>whereConditions is an anonymous type to filter the results ex: new {Category = 1, SubCategory=2}</para>
         /// <para>Supports transaction and command timeout</para>
         /// <para>Returns a list of entities that match where conditions</para>
@@ -183,6 +239,47 @@ namespace Dapper
                 Trace.WriteLine(String.Format("GetList<{0}>: {1}", currenttype, sb));
 
             return connection.Query<T>(sb.ToString(), whereConditions, transaction, true, commandTimeout);
+        }
+
+        /// <summary>
+        /// <para>By default queries the table matching the class name</para>
+        /// <para>-Table name can be overridden by adding an attribute on your class [Table("YourTableName")]</para>
+        /// <para>whereConditions is an anonymous type to filter the results ex: new {Category = 1, SubCategory=2}</para>
+        /// <para>Supports transaction and command timeout</para>
+        /// <para>Returns a list of entities that match where conditions</para>
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="connection"></param>
+        /// <param name="whereConditions"></param>
+        /// <param name="transaction"></param>
+        /// <param name="commandTimeout"></param>
+        /// <returns>Gets a list of entities with optional exact match where conditions</returns>
+        public static async Task<IEnumerable<T>> GetListAsync<T>(this IDbConnection connection, object whereConditions, IDbTransaction transaction = null, int? commandTimeout = null)
+        {
+            var currenttype = typeof(T);
+            var idProps = GetIdProperties(currenttype).ToList();
+            if (!idProps.Any())
+                throw new ArgumentException("Entity must have at least one [Key] property");
+
+            var name = GetTableName(currenttype);
+
+            var sb = new StringBuilder();
+            var whereprops = GetAllProperties(whereConditions).ToArray();
+            sb.Append("Select ");
+            //create a new empty instance of the type to get the base properties
+            BuildSelect(sb, GetScaffoldableProperties<T>().ToArray());
+            sb.AppendFormat(" from {0}", name);
+
+            if (whereprops.Any())
+            {
+                sb.Append(" where ");
+                BuildWhere(sb, whereprops, (T)Activator.CreateInstance(typeof(T)), whereConditions);
+            }
+
+            if (Debugger.IsAttached)
+                Trace.WriteLine(String.Format("GetList<{0}>: {1}", currenttype, sb));
+
+            return await connection.QueryAsync<T>(sb.ToString(), whereConditions, transaction,commandTimeout);
         }
 
         /// <summary>
@@ -234,6 +331,19 @@ namespace Dapper
         public static IEnumerable<T> GetList<T>(this IDbConnection connection)
         {
             return connection.GetList<T>(new { });
+        }
+
+        /// <summary>
+        /// <para>By default queries the table matching the class name</para>
+        /// <para>-Table name can be overridden by adding an attribute on your class [Table("YourTableName")]</para>
+        /// <para>Returns a list of all entities</para>
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="connection"></param>
+        /// <returns>Gets a list of all entities</returns>
+        public static async Task<IEnumerable<T>> GetListAsync<T>(this IDbConnection connection)
+        {
+            return await connection.GetListAsync<T>(new { });
         }
 
         /// <summary>
@@ -348,9 +458,91 @@ namespace Dapper
 
             result = connection.Query<T>(query, parameters, transaction, true, commandTimeout);
 
-            totals = connection.ExecuteScalar<int>("SELECT FOUND_ROWS();");
+            if (_dialect == Dialect.SQLServer)
+            {
+                query = _getTotalCntSql;
+                query = query.Replace("{TableName}", name);
+                query = query.Replace("{WhereClause}", conditions);
+                totals = connection.ExecuteScalar<int>(query,parameters);
+            }
+            else
+            {
+                totals = connection.ExecuteScalar<int>("SELECT FOUND_ROWS();",parameters);
+            }           
 
             return result;
+        }
+
+        /// <summary>
+        /// GetListPaged 
+        /// Just for mysql
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="connection"></param>
+        /// <param name="pageNumber"></param>
+        /// <param name="rowsPerPage"></param>
+        /// <param name="conditions"></param>
+        /// <param name="orderby"></param>       
+        /// <param name="parameters"></param>
+        /// <param name="transaction"></param>
+        /// <param name="commandTimeout"></param>
+        /// <returns></returns>
+        public static async Task<Tuple<IEnumerable<T>,int>> GetListPagedAsync<T>(this IDbConnection connection, int pageNumber, int rowsPerPage, string conditions, string orderby, object parameters = null, IDbTransaction transaction = null, int? commandTimeout = null)
+        {
+            IEnumerable<T> result;
+            int totals = 0;
+            if (string.IsNullOrEmpty(_getPagedListSql))
+                throw new Exception("GetListPage is not supported with the current SQL Dialect");
+
+            if (pageNumber < 1)
+                throw new Exception("Page must be greater than 0");
+
+            var currenttype = typeof(T);
+            var idProps = GetIdProperties(currenttype).ToList();
+            if (!idProps.Any())
+                throw new ArgumentException("Entity must have at least one [Key] property");
+
+            var name = GetTableName(currenttype);
+            var sb = new StringBuilder();
+            var query = _getPagedListSql;
+            if (string.IsNullOrEmpty(orderby))
+            {
+                orderby = GetColumnName(idProps.First());
+            }
+
+            //create a new empty instance of the type to get the base properties
+            BuildSelect(sb, GetScaffoldableProperties<T>().ToArray());
+
+            query = query.Replace("{SelectColumns}", sb.ToString());
+
+            query = query.Replace("Select ", "SELECT SQL_CALC_FOUND_ROWS ");
+            query = query.Replace("{TableName}", name);
+            query = query.Replace("{PageNumber}", pageNumber.ToString());
+            query = query.Replace("{RowsPerPage}", rowsPerPage.ToString());
+            query = query.Replace("{OrderBy}", orderby);
+            query = query.Replace("{WhereClause}", conditions);
+            query = query.Replace("{Offset}", ((pageNumber - 1) * rowsPerPage).ToString());
+
+            if (Debugger.IsAttached)
+                Trace.WriteLine(String.Format("GetListPaged<{0}>: {1}", currenttype, query));
+
+            result = await connection.QueryAsync<T>(query, parameters, transaction, commandTimeout);
+
+            if (_dialect == Dialect.SQLServer)
+            {
+                query = _getTotalCntSql;
+                query = query.Replace("{TableName}", name);
+                query = query.Replace("{WhereClause}", conditions);
+                totals = await connection.ExecuteScalarAsync<int>(query,parameters);
+            }
+            else
+            {
+                totals = await connection.ExecuteScalarAsync<int>("SELECT FOUND_ROWS();",parameters);
+            }
+
+            Tuple<IEnumerable<T>, int> retrunResult = new Tuple<IEnumerable<T>, int>(result,totals);
+
+            return retrunResult;
         }
 
         /// <summary>

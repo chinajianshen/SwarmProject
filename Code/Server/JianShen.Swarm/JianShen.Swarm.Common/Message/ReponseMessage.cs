@@ -23,4 +23,13 @@ namespace JianShen.Swarm.Common.Message
             get; set;
         }
     }
+
+    public class ReponseMessage
+    {
+         public dynamic Data { get; set; }
+
+        public string Message { get; set; }
+
+        public bool IsSuccess { get; set; }
+    }
 }

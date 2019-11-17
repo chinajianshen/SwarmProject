@@ -8,49 +8,65 @@ using JianShen.Swarm.Model.BaseModel;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace JianShen.Swarm.Service
 {
-    public class DepartmentService : IDepartmentService
+    public class DepartmentService : ServiceBase<DepartmentModel>,IDepartmentService
     {
         private readonly IDepartmentRep m_DepartmentRep;
 
-        public DepartmentService(IDepartmentRep departmentRep)
+        public DepartmentService(IDepartmentRep departmentRep):base(departmentRep)
         {
-            m_DepartmentRep = departmentRep;
+            m_DepartmentRep = departmentRep;            
         }
 
-        ReponseMessage<DepartmentEntity> IDepartmentService.GetByID(int id)
+        public DepartmentEntity GetByIDDto(int id)
         {
-            ReponseMessage<DepartmentEntity> result = new ReponseMessage<DepartmentEntity>();           
             var queryResult = m_DepartmentRep.Get(id);
-            result.Data = queryResult.JTransformTo<DepartmentEntity>();
-            result.IsSuccess = true;
+            var result = queryResult.JTransformTo<DepartmentEntity>();
 
             return result;
         }
 
-        ReponseMessage<List<DepartmentEntity>> IDepartmentService.GetList()
+        public async Task<DepartmentEntity> GetByIDDtoAsync(int id)
         {
-            ReponseMessage<List<DepartmentEntity>> result = new ReponseMessage<List<DepartmentEntity>>()
-            {
-                Data = m_DepartmentRep.GetList().JTransformTo<DepartmentEntity>(),
-                IsSuccess = true
-            };
+            var queryResult = await m_DepartmentRep.GetAsync(id);
+            var result = queryResult.JTransformTo<DepartmentEntity>();
+
             return result;
         }
 
-        ReponseMessage<PagedList<DepartmentEntity>> IDepartmentService.GetPagedList(int pageNumber, int rowsPerPage)
+
+        public List<DepartmentEntity> GetListDto()
+        {
+            var queryResult = m_DepartmentRep.GetList().JTransformTo<DepartmentEntity>();
+            return queryResult;
+        }
+
+        public async Task<List<DepartmentEntity>> GetListDtoAsync()
+        {
+            var queryResult = (await m_DepartmentRep.GetListAsync()).JTransformTo<DepartmentEntity>();
+            return queryResult;
+        }
+
+        public PagedList<DepartmentEntity> GetPagedListDto(BaseQueryEntity queryEntity)
         {
             int total = 0;
-            ReponseMessage<PagedList<DepartmentEntity>> result = new ReponseMessage<PagedList<DepartmentEntity>>() {
-                Data = new PagedList<DepartmentEntity>()
-            };
+            var result = new PagedList<DepartmentEntity>();
+            var queryResult = m_DepartmentRep.GetPagedList(queryEntity.PageIndex, queryEntity.PageSize, queryEntity.WhereCondition, queryEntity.OrderBy, out total,queryEntity.Parameters);
+            result.Items = queryResult.Items.JTransformTo<DepartmentEntity>();
+            result.TotalCount = total;
 
-            var queryResult = m_DepartmentRep.GetPagedList(pageNumber, rowsPerPage, null, null, out total);
-            result.Data.Items = queryResult.Items.JTransformTo<DepartmentEntity>();
-            result.Data.TotalCount = total;
-            result.IsSuccess = true;
+            return result;
+        }
+
+        public async Task<PagedList<DepartmentEntity>> GetPagedListDtoAsync(BaseQueryEntity queryEntity)
+        {            
+            var result = new PagedList<DepartmentEntity>();
+            var queryResult = await m_DepartmentRep.GetPagedListAsync(queryEntity.PageIndex, queryEntity.PageSize, queryEntity.WhereCondition, queryEntity.OrderBy,queryEntity.Parameters);
+            result.Items = queryResult.Items.JTransformTo<DepartmentEntity>();
+            result.TotalCount = queryResult.TotalCount;
 
             return result;
         }
