@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JianShen.Swarm.Web", "JianS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JianShen.Swarm.XUnit", "JianShen.Swarm.XUnit\JianShen.Swarm.XUnit.csproj", "{BE74A95B-9E75-49BF-9CCA-E719CA224A65}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "JianShen.Swram.Study", "JianShen.Swram.Study", "{CA9BC08D-70EE-4DA3-8823-F49BF7EF1978}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "JianShen.Swarm.Study", "JianShen.Swarm.Study", "{CA9BC08D-70EE-4DA3-8823-F49BF7EF1978}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "权限管理", "权限管理", "{58521017-B140-4200-ADD1-E1E1A2561B50}"
 EndProject
@@ -29,23 +29,25 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreMvcSPA2", "NetCoreMv
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreMvcVueElementUI", "NetCoreMvcVueElementUI\NetCoreMvcVueElementUI.csproj", "{849775EB-B95A-4761-848B-EA6C449E1C88}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JianShen.Swarm.Common", "JianShen.Swarm.Common\JianShen.Swarm.Common.csproj", "{61846D63-DA2F-4D33-BAB1-7526E3AD750B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JianShen.Swarm.Common", "JianShen.Swarm.Common\JianShen.Swarm.Common.csproj", "{61846D63-DA2F-4D33-BAB1-7526E3AD750B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JianShen.Swarm.DTO", "JianShen.Swarm.DTO\JianShen.Swarm.DTO.csproj", "{6201583B-A9E2-4E96-B4D2-D95314C91E67}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JianShen.Swarm.DTO", "JianShen.Swarm.DTO\JianShen.Swarm.DTO.csproj", "{6201583B-A9E2-4E96-B4D2-D95314C91E67}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JianShen.Swarm.IRepository", "JianShen.Swarm.IRepository\JianShen.Swarm.IRepository.csproj", "{BAB3EA59-3184-43E2-BC23-E7BA9CE37ECC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JianShen.Swarm.IRepository", "JianShen.Swarm.IRepository\JianShen.Swarm.IRepository.csproj", "{BAB3EA59-3184-43E2-BC23-E7BA9CE37ECC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JianShen.Swarm.Repository", "JianShen.Swarm.Repository\JianShen.Swarm.Repository.csproj", "{3027B106-0FAC-4C2A-9DB6-E252E15ADC9F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JianShen.Swarm.Repository", "JianShen.Swarm.Repository\JianShen.Swarm.Repository.csproj", "{3027B106-0FAC-4C2A-9DB6-E252E15ADC9F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JianShen.Swarm.IService", "JianShen.Swarm.IService\JianShen.Swarm.IService.csproj", "{EF1743A3-2A56-4901-9D77-BF984DE3ACB4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JianShen.Swarm.IService", "JianShen.Swarm.IService\JianShen.Swarm.IService.csproj", "{EF1743A3-2A56-4901-9D77-BF984DE3ACB4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JianShen.Swarm.Service", "JianShen.Swarm.Service\JianShen.Swarm.Service.csproj", "{2D365B39-E038-4E69-A571-40F9E1809AB7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JianShen.Swarm.Service", "JianShen.Swarm.Service\JianShen.Swarm.Service.csproj", "{2D365B39-E038-4E69-A571-40F9E1809AB7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JianShen.Swarm.Model", "JianShen.Swarm.Model\JianShen.Swarm.Model.csproj", "{27218ED3-874F-4BC1-9ABB-E0DF0B18C9AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JianShen.Swarm.Model", "JianShen.Swarm.Model\JianShen.Swarm.Model.csproj", "{27218ED3-874F-4BC1-9ABB-E0DF0B18C9AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JianShen.Swarm.WebApi", "JianShen.Swarm.WebApi\JianShen.Swarm.WebApi.csproj", "{B040CD32-CC7D-4665-8BCB-916C82B6B031}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JianShen.Swarm.WebApi", "JianShen.Swarm.WebApi\JianShen.Swarm.WebApi.csproj", "{B040CD32-CC7D-4665-8BCB-916C82B6B031}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JianShen.Swarm.Utility", "JianShen.Swarm.Utility\JianShen.Swarm.Utility.csproj", "{B8321916-6AE4-4D99-A55D-66DEEDFAA41A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JianShen.Swarm.Utility", "JianShen.Swarm.Utility\JianShen.Swarm.Utility.csproj", "{B8321916-6AE4-4D99-A55D-66DEEDFAA41A}"
+EndProject
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "JianShen.Swarm.WebClient", "JianShen.Swarm.WebClient\JianShen.Swarm.WebClient.njsproj", "{392A0A3E-D217-4FDA-9DC3-F3FD65049377}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -125,6 +127,10 @@ Global
 		{B8321916-6AE4-4D99-A55D-66DEEDFAA41A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8321916-6AE4-4D99-A55D-66DEEDFAA41A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8321916-6AE4-4D99-A55D-66DEEDFAA41A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{392A0A3E-D217-4FDA-9DC3-F3FD65049377}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{392A0A3E-D217-4FDA-9DC3-F3FD65049377}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{392A0A3E-D217-4FDA-9DC3-F3FD65049377}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{392A0A3E-D217-4FDA-9DC3-F3FD65049377}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
