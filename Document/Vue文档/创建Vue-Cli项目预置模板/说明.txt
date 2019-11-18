@@ -1,0 +1,6 @@
+通过预置Vue配置模板创建Vue项目
+1 预置模板.vuerc放在 当前用户根目录 如C:\Users\LOVE
+2 在指定上当按shift+右键-选在 在此处打开PowerShell 选项打开命令窗口
+  输入  vue create --preset swarmvuebuild 项目名称（不支持大定字母）
+3 在项目文件夹 npm install 还原插件
+4 npm run serve 调试
