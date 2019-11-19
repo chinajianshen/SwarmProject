@@ -47,8 +47,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JianShen.Swarm.WebApi", "Ji
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JianShen.Swarm.Utility", "JianShen.Swarm.Utility\JianShen.Swarm.Utility.csproj", "{B8321916-6AE4-4D99-A55D-66DEEDFAA41A}"
 EndProject
-Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "JianShen.Swarm.WebClient", "JianShen.Swarm.WebClient\JianShen.Swarm.WebClient.njsproj", "{392A0A3E-D217-4FDA-9DC3-F3FD65049377}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -127,10 +125,6 @@ Global
 		{B8321916-6AE4-4D99-A55D-66DEEDFAA41A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8321916-6AE4-4D99-A55D-66DEEDFAA41A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8321916-6AE4-4D99-A55D-66DEEDFAA41A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{392A0A3E-D217-4FDA-9DC3-F3FD65049377}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{392A0A3E-D217-4FDA-9DC3-F3FD65049377}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{392A0A3E-D217-4FDA-9DC3-F3FD65049377}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{392A0A3E-D217-4FDA-9DC3-F3FD65049377}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
